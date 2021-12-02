@@ -1,3 +1,4 @@
+from score import Score_board
 from turtle import *
 import time
 class Noname:
@@ -5,17 +6,18 @@ class Noname:
         self.segment=[]
         self.screen=Screen()
         self.create()
+        self.over=Score_board()
         
     def create(self):
         self.screen.tracer(0)
-        for i in range(0,3):
+        for i in range(0,13):
             new_segment=Turtle("square")
             new_segment.color("white")
             new_segment.penup()
             new_segment.goto(i*(-20),0)
             self.segment.append(new_segment)
         self.screen.update()    
-
+        self.segment[0].shape("circle")
     def something(self):
         for i in range(len(self.segment)-1,0,-1):
             new_xco=self.segment[i-1].xcor()
@@ -24,13 +26,74 @@ class Noname:
                 # print("herer")
             
         self.segment[0].forward(20)
-        # self.segment[0].left(90)
-        # self.segment[0].forward(20)
+        for i in range(1,len(self.segment)):
+            if self.segment[0]==self.segment[i].pos():
+                print(self.segment[i].pos())
+                print("herer")
+                
+    def is_hit(self):
+        if self.segment[0].xcor()>=300 or self.segment[0].xcor()<=-300 or self.segment[0].ycor()>=300 or self.segment[0].ycor()<=-300:
+            
+            self.speed(0)
+            self.penup()
+            self.color("white")
+            self.goto(0,0)
+            self.write(arg="Game Over",align="center",font=('Arial', 14, 'normal'))
+            self.hideturtle()
+            return False
+                       
     def up(self):
-        self.segment[0].setheading(90) 
-    # def down(self):
-    #     self.segment[0].left(180)
-    # def left(self):
-    #     self.segment[0].left(279)
-    # def right(self):
-    #     self.segment[0].left(0)              
+        if self.segment[0].heading()==270:
+            print("cant be done")
+        else:    
+            self.segment[0].setheading(90)
+    def left(self):
+        if self.segment[0].heading()==0:
+            print("cant be done")
+        else:
+            self.segment[0].setheading(180)
+    def down(self):
+        if self.segment[0].heading()==90:
+            print("cant be done")
+        else:
+            self.segment[0].setheading(270)
+    def right(self):
+        if self.segment[0].heading()==180:
+            print("cant be done")
+        else:
+            self.segment[0].setheading(0)             
+    def collison(self):
+        
+        for i in range(1,len(self.segment)-1):
+            print("herer")
+            # if self.segment[0].distance(i) < 15:
+            #     self.over.over()
+            #     print("herer")
+            #     return False
+        # likn=[]
+        
+
+
+        # for i in range(1,len(self.segment)):
+            
+        #     likn.append(self.segment[i].pos())
+        # for j in range(0,len(likn)-1):
+        #     if self.segment[0].pos()==likn[j]:
+        #         return False
+        #     else:
+        #        likn.clear()  
+        #        return True
+               
+        # print("hello")
+    def extending(self):
+        self.screen.tracer(0)
+        new_segment=Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        line=len(self.segment)
+        
+
+        new_segment.goto(self.segment[line-1].xcor(),self.segment[line-1].ycor())
+        self.segment.append(new_segment)
+        self.screen.update()
+
