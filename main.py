@@ -19,7 +19,7 @@ screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
-   
+score
 # screen.onkey(key="downp",fun=snake.down())
 # screen.onkey(key="left",fun=snake.left())
 # screen.onkey(key="right",fun=snake.right())
@@ -30,7 +30,7 @@ while game:
     # game=snake.collison()
     if snake.segment[0].distance(food)<15:
         food.another_one()
-        score.count+=1
+        
         
         score.hio()
         snake.extending()
@@ -38,18 +38,21 @@ while game:
 
     if snake.segment[0].xcor()>=300 or snake.segment[0].xcor()<=-300 or snake.segment[0].ycor()>=300 or snake.segment[0].ycor()<=-300:
         score.over()
-        game=False
+        snake.resrt()
          
     
     
     for i in snake.segment[1:]:
         
-        print("herer")
+        
         if snake.segment[0].distance(i) < 15:
             
          
-            game= False
+            
             score.over()
+            score.hio()
+            time.sleep(1)
+            snake.resrt()
     # for i in range(1,len(snake.segment)):
     #     likn=[]
     #     likn.append(snake.segment[i].pos())

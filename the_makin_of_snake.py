@@ -10,7 +10,7 @@ class Noname:
         
     def create(self):
         self.screen.tracer(0)
-        for i in range(0,13):
+        for i in range(0,3):
             new_segment=Turtle("square")
             new_segment.color("white")
             new_segment.penup()
@@ -62,29 +62,22 @@ class Noname:
             print("cant be done")
         else:
             self.segment[0].setheading(0)             
-    def collison(self):
-        
-        for i in range(1,len(self.segment)-1):
-            print("herer")
-            # if self.segment[0].distance(i) < 15:
-            #     self.over.over()
-            #     print("herer")
-            #     return False
-        # likn=[]
-        
+    def resrt(self):
+        self.screen.tracer(0)
+        for i in self.segment:
+            i.goto(1000,1000)
+        self.segment.clear()
+        self.create()
+        # for i in range(0,3):
+        #     new_segment=Turtle("square")
+        #     new_segment.color("white")
+        #     new_segment.penup()
+        #     new_segment.goto(i*(-20),0)
+        #     self.segment.append(new_segment)
+        # self.screen.update()    
+        # self.segment[0].shape("circle")
 
 
-        # for i in range(1,len(self.segment)):
-            
-        #     likn.append(self.segment[i].pos())
-        # for j in range(0,len(likn)-1):
-        #     if self.segment[0].pos()==likn[j]:
-        #         return False
-        #     else:
-        #        likn.clear()  
-        #        return True
-               
-        # print("hello")
     def extending(self):
         self.screen.tracer(0)
         new_segment=Turtle("square")
